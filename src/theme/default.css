@@ -17,6 +17,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.2;
     color: var(--light-color);
+    background: var(--dark-color);
 }
 
 a {

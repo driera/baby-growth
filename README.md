@@ -6,7 +6,7 @@ Online app to register and follow your baby weight growth progression.
 
 [√] Add eslint support
 
-[ ] Add a title to the page "Baby weight progression"
+[√] Add a title to the page "Baby weight progression"
 
 [ ] Add a new line
     
