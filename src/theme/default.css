@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,300,400,400i,600,800&display=block');
+
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+body {
+    width: 100%;
+    font-family: var(--primary-font), sans-serif;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.2;
+    color: var(--light-color);
+}
+
+a {
+    color: var(--main-color);
+    text-decoration: none;
+}
