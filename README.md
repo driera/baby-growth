@@ -4,14 +4,12 @@ Online app to register and follow your baby weight growth progression.
 ## TO DO
 [√] Remove unused files from CRA
 
-[ ] Add typescrpit support
-
-[ ] Add eslint support
+[√] Add eslint support
 
 [ ] Add a title to the page "Baby weight progression"
 
 [ ] Add a new line
-
+    
     [ ] Add an number input of baby weight that accepts a number (in grams) with no decimals.
     
     [ ] Add a button to submit data.
