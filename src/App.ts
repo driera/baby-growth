@@ -1,6 +1,8 @@
-function App() {
+import React, { FunctionComponent } from "react";
+
+const App: FunctionComponent = () => {
   return (
-    <div>
+    <>
       <header>
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -9,7 +11,7 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </>
   );
 }
 
