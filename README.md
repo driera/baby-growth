@@ -8,13 +8,10 @@ Online app to register and follow your baby weight growth progression.
 
 [√] Add a title to the page "Baby weight progression"
 
-[ ] Add a new line
-    
-    [√] Add an number input of baby weight that accepts a number (in grams) with no decimals.
-    
-    [√] Add a button to submit data.
-    
-    [ ] When submit a new line is added on top of the weight table. This line has the weight and a timestamp (of submit moment).
+[√] Add a new line
+    * Add an number input of baby weight that accepts a number (in grams) with no decimals.
+    * Add a button to submit data.
+    * When submit a new line is added on top of the weight table. This line has the weight and a timestamp (of submit moment).
 
 [ ] Enable line removal
 
@@ -25,3 +22,5 @@ Online app to register and follow your baby weight growth progression.
 [ ] Weight table is ordered by date (new to old), with no pagination
 
 [ ] Data is saved in localstorage
+
+[ ] Shows progression in a table (months / weight)

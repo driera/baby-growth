@@ -4,18 +4,31 @@ import React, {
   FormEventHandler,
   useState
 } from "react";
+import { formatDate } from "../utils";
 
 const App = (): JSX.Element => {
-  const [weightList, setWeightList] = useState<number[]>([]);
+  type weightListItemType = {
+    id?: number;
+    value: number;
+    date?: Date;
+  };
+
+  const [weightList, setWeightList] = useState<weightListItemType[]>([]);
   const [weightItem, setWeightItem] = useState<string>("");
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event): void => {
     event.preventDefault();
-    if (weightItem === "") {
+
+    if (weightItem === "" || isNaN(parseInt(weightItem))) {
+      setWeightItem("");
+
       return;
     }
-    console.log("handleChange");
-    setWeightList([...weightList, Math.floor(parseInt(weightItem))]);
+
+    setWeightList([
+      ...weightList,
+      { date: new Date(Date.now()), value: parseInt(weightItem) }
+    ]);
     setWeightItem("");
   };
 
@@ -53,7 +66,11 @@ const App = (): JSX.Element => {
 
       <ul>
         {weightList.map((item, index) => (
-          <li key={index}>new entry: {item} g</li>
+          <li key={index}>
+            new entry: {item.date && formatDate(item.date, "es-ES")}
+            {" - "}
+            {item.value} g
+          </li>
         ))}
       </ul>
     </div>
