@@ -11,7 +11,7 @@ describe("Page", () => {
     userEvent.type(screen.getByRole("textbox"), "3000");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
-    expect(screen.getByText(/new entry: 3000/i));
+    expect(screen.getByText(/new entry: 3000/i)).toBeInTheDocument();
   });
 
   it("removes decimals from input", () => {
@@ -21,6 +21,16 @@ describe("Page", () => {
     userEvent.type(screen.getByRole("textbox"), "1000.5");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
-    expect(screen.getByText("new entry: 1000 g"));
+    expect(screen.getByText("new entry: 1000 g")).toBeInTheDocument();
+  });
+
+  it("does not add a new line when input is empty", () => {
+    render(<App />);
+
+    userEvent.click(screen.getByText(/weight in grams/i));
+    userEvent.type(screen.getByRole("textbox"), "");
+    userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
+
+    expect(screen.queryByText(/new entry/i)).not.toBeInTheDocument();
   });
 });
