@@ -67,7 +67,7 @@ const App = (): JSX.Element => {
       <ul>
         {weightList.map((item, index) => (
           <li key={index}>
-            new entry: {item.date && formatDate(item.date, "es-ES")}
+            {item.date && formatDate(item.date, "es-ES")}
             {" - "}
             {item.value} g
           </li>
