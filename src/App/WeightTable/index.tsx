@@ -1,11 +1,17 @@
-import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  FormEventHandler,
+  MouseEvent,
+  useEffect,
+  useState
+} from "react";
 import { formatDate } from "../../utils";
 
 const WeightTable = (): JSX.Element => {
   type weightListItemType = {
     id?: number;
     value: number;
-    date?: Date;
+    date?: number;
   };
 
   const [weightList, setWeightList] = useState<weightListItemType[]>([]);
@@ -22,13 +28,21 @@ const WeightTable = (): JSX.Element => {
 
     setWeightList([
       ...weightList,
-      { date: new Date(Date.now()), value: parseInt(weightItem) }
+      { date: Date.now(), value: parseInt(weightItem) }
     ]);
     setWeightItem("");
   };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setWeightItem(event.target.value);
+  };
+
+  const removeItem = (
+    event: MouseEvent<HTMLButtonElement, Event>,
+    item: weightListItemType
+  ): void => {
+    event.preventDefault();
+    setWeightList(weightList.filter((i) => i.date !== item.date));
   };
 
   return (
@@ -48,7 +62,10 @@ const WeightTable = (): JSX.Element => {
       <ul>
         {weightList.map((item, index) => (
           <li key={index}>
-            {item.date && formatDate(item.date, "es-ES")}
+            <button type="button" onClick={(e) => removeItem(e, item)}>
+              X
+            </button>{" "}
+            {item.date && formatDate(new Date(item.date), "es-ES")}
             {" - "}
             {item.value} g
           </li>

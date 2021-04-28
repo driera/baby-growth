@@ -13,7 +13,7 @@ Online app to register and follow your baby weight growth progression.
     * Add a button to submit data.
     * When submit a new line is added on top of the weight table. This line has the weight and a timestamp (of submit moment).
 
-[ ] Enable line removal
+[√] Enable line removal
 
 [ ] Enable date edition to add past weights
 
@@ -23,4 +23,4 @@ Online app to register and follow your baby weight growth progression.
 
 [ ] Data is saved in localstorage
 
-[ ] Shows progression in a table (months / weight)
+[ ] Shows progression in a graph (months / weight)

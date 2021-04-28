@@ -65,4 +65,18 @@ describe("Page", () => {
 
     expect(screen.queryByText(/28\/4\/2021 18:15/i)).not.toBeInTheDocument();
   });
+
+  it("removes weight when clicking `X` button", () => {
+    render(<WeightTable />);
+
+    userEvent.click(screen.getByText(/Weight in grams/i));
+    userEvent.type(screen.getByRole("textbox"), "3000");
+    userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
+
+    expect(screen.getByText(/3000 g/i)).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole("button", { name: "X" }));
+
+    expect(screen.queryByText(/3000 g/i)).not.toBeInTheDocument();
+  });
 });
