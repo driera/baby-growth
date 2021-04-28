@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from ".";
 import userEvent from "@testing-library/user-event";
+import WeightTable from ".";
 
 describe("Page", () => {
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe("Page", () => {
   });
 
   it("Shows a new line after submitting weight form", () => {
-    render(<App />);
+    render(<WeightTable />);
 
     userEvent.click(screen.getByText(/Weight in grams/i));
     userEvent.type(screen.getByRole("textbox"), "3000");
@@ -27,7 +27,7 @@ describe("Page", () => {
   });
 
   it("removes decimals from input", () => {
-    render(<App />);
+    render(<WeightTable />);
 
     userEvent.click(screen.getByText(/weight in grams/i));
     userEvent.type(screen.getByRole("textbox"), "1000.5");
@@ -37,7 +37,7 @@ describe("Page", () => {
   });
 
   it("does not add a new line when input is empty", () => {
-    render(<App />);
+    render(<WeightTable />);
 
     userEvent.click(screen.getByText(/weight in grams/i));
     userEvent.type(screen.getByRole("textbox"), "");
@@ -47,7 +47,7 @@ describe("Page", () => {
   });
 
   it("shows a date in each new weight registry", () => {
-    render(<App />);
+    render(<WeightTable />);
 
     userEvent.click(screen.getByText(/weight in grams/i));
     userEvent.type(screen.getByRole("textbox"), "4000");
@@ -57,7 +57,7 @@ describe("Page", () => {
   });
 
   it("avoids anything else than numbers in input", () => {
-    render(<App />);
+    render(<WeightTable />);
 
     userEvent.click(screen.getByText(/weight in grams/i));
     userEvent.type(screen.getByRole("textbox"), "this is a text");
