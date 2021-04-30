@@ -51,8 +51,8 @@ const WeightTable = (): JSX.Element => {
         <label htmlFor="weight">Weight in grams</label>
         <input
           id="weight"
-          type="text"
-          value={weightItem}
+          type="number"
+          value={Number(weightItem).toString()}
           onChange={handleChange}
           required
         />

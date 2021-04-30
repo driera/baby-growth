@@ -20,7 +20,7 @@ describe("Page", () => {
     render(<WeightTable />);
 
     userEvent.click(screen.getByText(/Weight in grams/i));
-    userEvent.type(screen.getByRole("textbox"), "3000");
+    userEvent.type(screen.getByRole("spinbutton"), "3000");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
     expect(screen.getByText(/3000 g/i)).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe("Page", () => {
     render(<WeightTable />);
 
     userEvent.click(screen.getByText(/weight in grams/i));
-    userEvent.type(screen.getByRole("textbox"), "1000.5");
+    userEvent.type(screen.getByRole("spinbutton"), "1000.5");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
     expect(screen.getByText(/1000 g/i)).toBeInTheDocument();
@@ -40,7 +40,7 @@ describe("Page", () => {
     render(<WeightTable />);
 
     userEvent.click(screen.getByText(/weight in grams/i));
-    userEvent.type(screen.getByRole("textbox"), "");
+    userEvent.type(screen.getByRole("spinbutton"), "");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
     expect(screen.queryByText(/28\/4\/2021 18:15/i)).not.toBeInTheDocument();
@@ -50,7 +50,7 @@ describe("Page", () => {
     render(<WeightTable />);
 
     userEvent.click(screen.getByText(/weight in grams/i));
-    userEvent.type(screen.getByRole("textbox"), "4000");
+    userEvent.type(screen.getByRole("spinbutton"), "4000");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
     expect(screen.getByText("28/4/2021 18:15 - 4000 g")).toBeInTheDocument();
@@ -60,7 +60,7 @@ describe("Page", () => {
     render(<WeightTable />);
 
     userEvent.click(screen.getByText(/weight in grams/i));
-    userEvent.type(screen.getByRole("textbox"), "this is a text");
+    userEvent.type(screen.getByRole("spinbutton"), "this is a text");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
     expect(screen.queryByText(/28\/4\/2021 18:15/i)).not.toBeInTheDocument();
@@ -70,7 +70,7 @@ describe("Page", () => {
     render(<WeightTable />);
 
     userEvent.click(screen.getByText(/Weight in grams/i));
-    userEvent.type(screen.getByRole("textbox"), "3000");
+    userEvent.type(screen.getByRole("spinbutton"), "3000");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
     expect(screen.getByText(/3000 g/i)).toBeInTheDocument();
