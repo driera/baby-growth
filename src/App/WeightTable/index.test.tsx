@@ -53,7 +53,7 @@ describe("Page", () => {
     userEvent.type(screen.getByRole("spinbutton"), "4000");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
-    expect(screen.getByText("28/4/2021 18:15 - 4000 g")).toBeInTheDocument();
+    expect(screen.getByText(/28\/4\/2021 18:15 - 4000 g/i)).toBeInTheDocument();
   });
 
   it("avoids anything else than numbers in input", () => {
@@ -78,5 +78,18 @@ describe("Page", () => {
     userEvent.click(screen.getByRole("button", { name: "X" }));
 
     expect(screen.queryByText(/3000 g/i)).not.toBeInTheDocument();
+  });
+
+  it("adds `poop` and `feed` booleans in each line", () => {
+    render(<WeightTable />);
+
+    userEvent.click(screen.getByText(/Weight in grams/i));
+    userEvent.type(screen.getByRole("spinbutton"), "3000");
+    userEvent.click(screen.getByText(/feed/i));
+    userEvent.click(screen.getByText(/poop/i));
+    userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
+
+    expect(screen.getByText(/💩/i)).toBeInTheDocument();
+    expect(screen.getByText(/🍼/i)).toBeInTheDocument();
   });
 });
