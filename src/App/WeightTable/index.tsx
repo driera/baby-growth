@@ -6,6 +6,7 @@ import React, {
   useState
 } from "react";
 import { formatDate } from "../../utils";
+import styles from "./index.styles";
 
 const WeightTable = (): JSX.Element => {
   type weightListItemType = {
@@ -76,46 +77,59 @@ const WeightTable = (): JSX.Element => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="weight">Weight in grams</label>
-        <input
-          id="weight"
-          type="number"
-          value={weightItem}
-          onChange={handleWeightChange}
-          required
-        />
-        <label htmlFor="poop">
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <label htmlFor="weight" style={styles.weightLabel}>
+          WEIGHT (in grams)
+          <input
+            id="weight"
+            type="number"
+            value={weightItem}
+            onChange={handleWeightChange}
+            required
+            style={styles.weightInput}
+          />
+        </label>
+        <label htmlFor="poop" style={styles.checkboxLabel}>
           <input
             type="checkbox"
             id="poop"
             onChange={handlePoopChange}
             checked={weightItemPoop}
+            style={styles.checkbox}
           />
           Poop
         </label>
-        <label htmlFor="feed">
+        <label htmlFor="feed" style={styles.checkboxLabel}>
           <input
             type="checkbox"
             id="feed"
             onChange={handleFeedChange}
             checked={weightItemFeed}
+            style={styles.checkbox}
           />
           Feed
         </label>
-        <button type="submit">Submit weight</button>
+        <button type="submit" style={styles.submit}>
+          Submit weight
+        </button>
       </form>
 
-      <ul>
+      <ul style={styles.weightGrid}>
         {weightList.map((item, index) => (
-          <li key={index}>
-            <button type="button" onClick={(e) => removeItem(e, item)}>
-              X
-            </button>{" "}
-            {item.date && formatDate(new Date(item.date), "es-ES")}
-            {" - "}
-            {item.value} g {(item.poop || item.feed) && " - "}
-            {item.poop && `💩`} {item.feed && `🍼`}
+          <li key={index} style={styles.weightLine}>
+            <button
+              type="button"
+              onClick={(e) => removeItem(e, item)}
+              style={styles.removeButton}
+              aria-label="Remove this line"
+            >
+              ×
+            </button>
+            <span>{item.date && formatDate(new Date(item.date), "es-ES")}</span>
+            <span style={styles.weightValue}>{item.value} g</span>
+            <span>
+              {item.poop && `💩`} {item.feed && `🍼`}
+            </span>
           </li>
         ))}
       </ul>
