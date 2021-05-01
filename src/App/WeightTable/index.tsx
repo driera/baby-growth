@@ -5,19 +5,24 @@ import React, {
   useEffect,
   useState
 } from "react";
-import { formatDate } from "../../utils";
+import { formatDate, useLocalStorageState } from "../../utils";
 import styles from "./index.styles";
 
-const WeightTable = (): JSX.Element => {
-  type weightListItemType = {
-    id?: number;
-    value: number;
-    date?: number;
-    poop?: boolean;
-    feed?: boolean;
-  };
+type weightListItemType = {
+  id?: number;
+  value: number;
+  date?: number;
+  poop?: boolean;
+  feed?: boolean;
+};
 
-  const [weightList, setWeightList] = useState<weightListItemType[]>([]);
+export type weightListType = weightListItemType[];
+
+const WeightTable = (): JSX.Element => {
+  const [weightList, setWeightList] = useLocalStorageState(
+    "baby-weight-list",
+    []
+  );
   const [weightItem, setWeightItem] = useState<string>("");
   const [weightItemPoop, setWeightItemPoop] = useState<boolean>(false);
   const [weightItemFeed, setWeightItemFeed] = useState<boolean>(false);

@@ -15,12 +15,12 @@ Online app to register and follow your baby weight growth progression.
 
 [√] Enable line removal
 
-[ ] Enable date edition to add past weights
-
 [√] Add `poop` and `feed` toggle to new weight form to indicate this 2 variables in each line of the table.
 
-[ ] Weight table is ordered by date (new to old), with no pagination
+[√] Data is saved in localstorage
 
-[ ] Data is saved in localstorage
+[ ] Enable date edition to add past weights
+
+[ ] Weight table is ordered by date (new to old), with no pagination
 
 [ ] Shows progression in a graph (months / weight)
