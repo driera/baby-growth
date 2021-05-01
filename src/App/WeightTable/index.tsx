@@ -52,7 +52,7 @@ const WeightTable = (): JSX.Element => {
         <input
           id="weight"
           type="number"
-          value={Number(weightItem).toString()}
+          value={weightItem}
           onChange={handleChange}
           required
         />
