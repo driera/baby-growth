@@ -103,4 +103,14 @@ describe("Page", () => {
 
     expect(screen.getByText(/22\/3\/2021/i)).toBeInTheDocument();
   });
+
+  it("adds a specific time to new line", () => {
+    render(<WeightTable />);
+
+    userEvent.type(screen.getByLabelText("Time"), "20:30");
+    userEvent.type(screen.getByRole("spinbutton"), "2100");
+    userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
+
+    expect(screen.getByText(/20:30/i)).toBeInTheDocument();
+  });
 });

@@ -8,6 +8,7 @@ import React, {
 import {
   formatDate,
   formatToInputDate,
+  formatToInputTime,
   useLocalStorageState
 } from "../../utils";
 import styles from "./index.styles";
@@ -31,6 +32,7 @@ const WeightTable = (): JSX.Element => {
   const [weightItemPoop, setWeightItemPoop] = useState<boolean>(false);
   const [weightItemFeed, setWeightItemFeed] = useState<boolean>(false);
   const [weightDate, setWeightDate] = useState<number | null>(null);
+  const [weightTime, setWeightTime] = useState<string | null>(null);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event): void => {
     event.preventDefault();
@@ -43,10 +45,21 @@ const WeightTable = (): JSX.Element => {
       return;
     }
 
+    let userDate = Date.now();
+
+    if (weightDate) {
+      userDate = weightDate;
+    }
+
+    if (weightTime) {
+      const time = weightTime.split(":");
+      userDate = new Date(userDate).setHours(Number(time[0]), Number(time[1]));
+    }
+
     setWeightList([
       ...weightList,
       {
-        date: weightDate ? weightDate : Date.now(),
+        date: userDate,
         value: parseInt(weightItem),
         poop: weightItemPoop,
         feed: weightItemFeed
@@ -56,6 +69,7 @@ const WeightTable = (): JSX.Element => {
     setWeightItemPoop(false);
     setWeightItemFeed(false);
     setWeightDate(null);
+    setWeightTime(null);
   };
 
   const handleWeightChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -91,6 +105,10 @@ const WeightTable = (): JSX.Element => {
     setWeightDate(customDate.getTime());
   };
 
+  const handleTimeChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setWeightTime(event.target.value);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit} style={styles.form}>
@@ -103,6 +121,15 @@ const WeightTable = (): JSX.Element => {
               weightDate ? new Date(weightDate) : new Date()
             )}
             onChange={handleDateChange}
+          />
+        </label>
+        <label htmlFor="time">
+          Time
+          <input
+            id="time"
+            type="time"
+            value={weightTime ? weightTime : formatToInputTime(new Date())}
+            onChange={handleTimeChange}
           />
         </label>
         <label htmlFor="weight" style={styles.weightLabel}>

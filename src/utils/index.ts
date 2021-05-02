@@ -15,8 +15,8 @@ export const formatDate = (
   });
 };
 
-export const formatToInputDate = (weightDate: Date): string => {
-  const d = new Date(weightDate);
+export const formatToInputDate = (date: Date): string => {
+  const d = new Date(date);
   let month = "" + (d.getMonth() + 1);
   let day = "" + d.getDate();
   const year = d.getFullYear();
@@ -25,6 +25,14 @@ export const formatToInputDate = (weightDate: Date): string => {
   if (day.length < 2) day = "0" + day;
 
   return [year, month, day].join("-");
+};
+
+export const formatToInputTime = (date: Date): string => {
+  const d = new Date(date);
+  const hour = "" + d.getHours();
+  const minutes = "" + d.getMinutes();
+
+  return [hour, minutes].join(":");
 };
 
 export const useLocalStorageState = (
