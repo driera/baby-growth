@@ -93,4 +93,14 @@ describe("Page", () => {
     expect(screen.getByText(/💩/i)).toBeInTheDocument();
     expect(screen.getByText(/🍼/i)).toBeInTheDocument();
   });
+
+  it("adds a specific date to new line", () => {
+    render(<WeightTable />);
+
+    userEvent.type(screen.getByLabelText("Date"), "2021-03-22");
+    userEvent.type(screen.getByRole("spinbutton"), "2100");
+    userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
+
+    expect(screen.getByText(/22\/3\/2021/i)).toBeInTheDocument();
+  });
 });

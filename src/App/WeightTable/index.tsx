@@ -5,7 +5,11 @@ import React, {
   useEffect,
   useState
 } from "react";
-import { formatDate, useLocalStorageState } from "../../utils";
+import {
+  formatDate,
+  formatToInputDate,
+  useLocalStorageState
+} from "../../utils";
 import styles from "./index.styles";
 
 type weightListItemType = {
@@ -26,6 +30,7 @@ const WeightTable = (): JSX.Element => {
   const [weightItem, setWeightItem] = useState<string>("");
   const [weightItemPoop, setWeightItemPoop] = useState<boolean>(false);
   const [weightItemFeed, setWeightItemFeed] = useState<boolean>(false);
+  const [weightDate, setWeightDate] = useState<number | null>(null);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event): void => {
     event.preventDefault();
@@ -41,7 +46,7 @@ const WeightTable = (): JSX.Element => {
     setWeightList([
       ...weightList,
       {
-        date: Date.now(),
+        date: weightDate ? weightDate : Date.now(),
         value: parseInt(weightItem),
         poop: weightItemPoop,
         feed: weightItemFeed
@@ -50,6 +55,7 @@ const WeightTable = (): JSX.Element => {
     setWeightItem("");
     setWeightItemPoop(false);
     setWeightItemFeed(false);
+    setWeightDate(null);
   };
 
   const handleWeightChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -80,9 +86,25 @@ const WeightTable = (): JSX.Element => {
     setWeightList(weightList.filter((i) => i.date !== item.date));
   };
 
+  const handleDateChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const customDate = new Date(event.target.value);
+    setWeightDate(customDate.getTime());
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit} style={styles.form}>
+        <label htmlFor="date">
+          Date
+          <input
+            id="date"
+            type="date"
+            value={formatToInputDate(
+              weightDate ? new Date(weightDate) : new Date()
+            )}
+            onChange={handleDateChange}
+          />
+        </label>
         <label htmlFor="weight" style={styles.weightLabel}>
           WEIGHT (in grams)
           <input
