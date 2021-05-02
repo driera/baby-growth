@@ -1,6 +1,9 @@
 # Baby growth
 Online app to register and follow your baby weight growth progression.
 
+baby-weight.netlify.com
+[![Netlify Status](https://api.netlify.com/api/v1/badges/85211692-06f8-4a73-8e31-c2d7e37da2b6/deploy-status)](https://app.netlify.com/sites/baby-weight/deploys) 
+
 ## TO DO
 [√] Remove unused files from CRA
 
@@ -18,6 +21,8 @@ Online app to register and follow your baby weight growth progression.
 [√] Add `poop` and `feed` toggle to new weight form to indicate this 2 variables in each line of the table.
 
 [√] Data is saved in localstorage
+
+[√] Deploy to Netlify
 
 [ ] Enable date edition to add past weights
 
