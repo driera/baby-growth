@@ -14,12 +14,13 @@ describe("Page", () => {
 
   afterEach(() => {
     jest.spyOn(Date, "now").mockRestore();
+    localStorage.removeItem("baby-weight-list");
   });
 
   it("Shows a new line after submitting weight form", () => {
     render(<WeightTable />);
 
-    userEvent.click(screen.getByText(/Weight in grams/i));
+    userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "3000");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
@@ -29,7 +30,7 @@ describe("Page", () => {
   it("removes decimals from input", () => {
     render(<WeightTable />);
 
-    userEvent.click(screen.getByText(/weight in grams/i));
+    userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "1000.5");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
@@ -39,7 +40,7 @@ describe("Page", () => {
   it("does not add a new line when input is empty", () => {
     render(<WeightTable />);
 
-    userEvent.click(screen.getByText(/weight in grams/i));
+    userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
@@ -49,17 +50,17 @@ describe("Page", () => {
   it("shows a date in each new weight registry", () => {
     render(<WeightTable />);
 
-    userEvent.click(screen.getByText(/weight in grams/i));
+    userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "4000");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
-    expect(screen.getByText(/28\/4\/2021 18:15 - 4000 g/i)).toBeInTheDocument();
+    expect(screen.getByText(/28\/4\/2021 18:15/i)).toBeInTheDocument();
   });
 
   it("avoids anything else than numbers in input", () => {
     render(<WeightTable />);
 
-    userEvent.click(screen.getByText(/weight in grams/i));
+    userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "this is a text");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
@@ -69,13 +70,13 @@ describe("Page", () => {
   it("removes weight when clicking `X` button", () => {
     render(<WeightTable />);
 
-    userEvent.click(screen.getByText(/Weight in grams/i));
+    userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "3000");
     userEvent.click(screen.getByRole("button", { name: /submit weight/i }));
 
     expect(screen.getByText(/3000 g/i)).toBeInTheDocument();
 
-    userEvent.click(screen.getByRole("button", { name: "X" }));
+    userEvent.click(screen.getByLabelText(/remove/i));
 
     expect(screen.queryByText(/3000 g/i)).not.toBeInTheDocument();
   });
@@ -83,7 +84,7 @@ describe("Page", () => {
   it("adds `poop` and `feed` booleans in each line", () => {
     render(<WeightTable />);
 
-    userEvent.click(screen.getByText(/Weight in grams/i));
+    userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "3000");
     userEvent.click(screen.getByText(/feed/i));
     userEvent.click(screen.getByText(/poop/i));
