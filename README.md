@@ -24,8 +24,8 @@ baby-weight.netlify.com
 
 [√] Deploy to Netlify
 
-[ ] Enable date edition to add past weights
+[√] Enable date edition to add past weights
 
-[ ] Weight table is ordered by date (new to old), with no pagination
+[√] Weight table is ordered by date (new to old), with no pagination
 
 [ ] Shows progression in a graph (months / weight)
