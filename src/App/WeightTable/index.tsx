@@ -33,68 +33,76 @@ const WeightTable = (): JSX.Element => {
   const [weightItemFeed, setWeightItemFeed] = useState<boolean>(false);
   const [weightDate, setWeightDate] = useState<number | null>(null);
   const [weightTime, setWeightTime] = useState<string | null>(null);
+  const [weight, setWeight] = useState<string>("");
+  const [poop, setPoop] = useState<boolean>(false);
+  const [feed, setFeed] = useState<boolean>(false);
+  const [date, setDate] = useState<number | null>(null);
+  const [time, setTime] = useState<string | null>(null);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event): void => {
     event.preventDefault();
 
-    if (weightItem === "" || isNaN(parseInt(weightItem))) {
-      setWeightItem("");
-      setWeightItemPoop(false);
-      setWeightItemFeed(false);
+    if (weight === "" || isNaN(parseInt(weight))) {
+      setWeight("");
+      setPoop(false);
+      setFeed(false);
 
       return;
     }
 
     let userDate = Date.now();
 
-    if (weightDate) {
-      userDate = weightDate;
+    if (date) {
+      userDate = date;
     }
 
-    if (weightTime) {
-      const time = weightTime.split(":");
-      userDate = new Date(userDate).setHours(Number(time[0]), Number(time[1]));
+    if (time) {
+      const userTime = time.split(":");
+      userDate = new Date(userDate).setHours(
+        Number(userTime[0]),
+        Number(userTime[1])
+      );
     }
 
     setWeightList([
       ...weightList,
       {
         date: userDate,
-        value: parseInt(weightItem),
-        poop: weightItemPoop,
-        feed: weightItemFeed
+        value: parseInt(weight),
+        poop: poop,
+        feed: feed
       }
     ]);
-    setWeightItem("");
-    setWeightItemPoop(false);
-    setWeightItemFeed(false);
-    setWeightDate(null);
-    setWeightTime(null);
+    setWeight("");
+    setPoop(false);
+    setFeed(false);
+    setDate(null);
+    setTime(null);
   };
 
   const handleWeightChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setWeightItem(event.target.value);
+    setWeight(event.target.value);
   };
 
   const handlePoopChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (event.target.checked) {
-      setWeightItemPoop(true);
+      setPoop(true);
     } else {
-      setWeightItemPoop(false);
+      setPoop(false);
     }
   };
 
   const handleFeedChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (event.target.checked) {
-      setWeightItemFeed(true);
+      setFeed(true);
     } else {
-      setWeightItemFeed(false);
+      setFeed(false);
     }
   };
 
   const removeItem = (
     event: MouseEvent<HTMLButtonElement, Event>,
-    item: weightListItemType
+    item: itemType
   ): void => {
     event.preventDefault();
     setWeightList(weightList.filter((i) => i.date !== item.date));
@@ -102,11 +110,11 @@ const WeightTable = (): JSX.Element => {
 
   const handleDateChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const customDate = new Date(event.target.value);
-    setWeightDate(customDate.getTime());
+    setDate(customDate.getTime());
   };
 
   const handleTimeChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setWeightTime(event.target.value);
+    setTime(event.target.value);
   };
 
   return (
@@ -117,9 +125,7 @@ const WeightTable = (): JSX.Element => {
           <input
             id="date"
             type="date"
-            value={formatToInputDate(
-              weightDate ? new Date(weightDate) : new Date()
-            )}
+            value={formatToInputDate(date ? new Date(date) : new Date())}
             onChange={handleDateChange}
           />
         </label>
@@ -128,7 +134,7 @@ const WeightTable = (): JSX.Element => {
           <input
             id="time"
             type="time"
-            value={weightTime ? weightTime : formatToInputTime(new Date())}
+            value={time ? time : formatToInputTime(new Date())}
             onChange={handleTimeChange}
           />
         </label>
@@ -137,7 +143,7 @@ const WeightTable = (): JSX.Element => {
           <input
             id="weight"
             type="number"
-            value={weightItem}
+            value={weight}
             onChange={handleWeightChange}
             required
             style={styles.weightInput}
@@ -148,7 +154,7 @@ const WeightTable = (): JSX.Element => {
             type="checkbox"
             id="poop"
             onChange={handlePoopChange}
-            checked={weightItemPoop}
+            checked={poop}
             style={styles.checkbox}
           />
           Poop
@@ -158,7 +164,7 @@ const WeightTable = (): JSX.Element => {
             type="checkbox"
             id="feed"
             onChange={handleFeedChange}
-            checked={weightItemFeed}
+            checked={feed}
             style={styles.checkbox}
           />
           Feed
