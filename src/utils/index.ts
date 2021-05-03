@@ -1,5 +1,5 @@
 import { SetStateAction, useEffect, useRef, useState } from "react";
-import { weightListType } from "../App/WeightTable";
+import { itemType } from "../App/WeightTable";
 
 export const formatDate = (
   date: Date,
@@ -43,8 +43,8 @@ export const useLocalStorageState = (
   defaultValue: unknown = "",
   { serialize = JSON.stringify, deserialize = JSON.parse } = {}
 ): [
-  state: weightListType,
-  setState: React.Dispatch<SetStateAction<weightListType>>
+  state: itemType[],
+  setState: React.Dispatch<SetStateAction<itemType[]>>
 ] => {
   const [state, setState] = useState(() => {
     const valueInLocalStorage = window.localStorage.getItem(key);
