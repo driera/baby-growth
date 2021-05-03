@@ -28,4 +28,12 @@ baby-weight.netlify.com
 
 [√] Weight table is ordered by date (new to old), with no pagination
 
+[√] Merge states
+
+[√] Modify `item.date` state from date and time inputs, avoid creating new dates
+
+[ ] Split WeightTable in multiple components (form and list)
+
+[ ] Spike: Save dates in Date format (not number) is better for performance?
+
 [ ] Shows progression in a graph (months / weight)

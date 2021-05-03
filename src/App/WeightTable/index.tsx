@@ -2,8 +2,6 @@ import React, {
   ChangeEventHandler,
   FormEventHandler,
   MouseEvent,
-  useEffect,
-  useRef,
   useState
 } from "react";
 import {
@@ -23,15 +21,12 @@ export type itemType = {
 
 const WeightTable = (): JSX.Element => {
   const [list, setList] = useLocalStorageState("baby-weight-list", []);
-
   const [item, setItem] = useState<itemType>({
     value: null,
     date: Date.now(),
     poop: false,
     feed: false
   });
-
-  const timeRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event): void => {
     event.preventDefault();
@@ -45,6 +40,30 @@ const WeightTable = (): JSX.Element => {
       date: Date.now(),
       poop: false,
       feed: false
+    });
+  };
+
+  const handleDateChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const time = event.target.value.split("-");
+    const date = new Date(item.date).setFullYear(
+      Number(time[0]),
+      Number(time[1]) - 1,
+      Number(time[2])
+    );
+
+    setItem({
+      ...item,
+      date
+    });
+  };
+
+  const handleTimeChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const time = event.target.value.split(":");
+    const date = new Date(item.date).setHours(Number(time[0]), Number(time[1]));
+
+    setItem({
+      ...item,
+      date
     });
   };
 
@@ -79,32 +98,6 @@ const WeightTable = (): JSX.Element => {
     setList(list.filter((i) => i.date !== item.date));
   };
 
-  const handleDateChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const time = timeRef.current?.value || formatToInputTime(new Date());
-    const date = new Date(event.target.value).setHours(
-      Number(time.split(":")[0]),
-      Number(time.split(":")[1])
-    );
-
-    setItem({
-      ...item,
-      date
-    });
-  };
-
-  const handleTimeChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const time = event.target.value;
-    const date = new Date(item.date).setHours(
-      Number(time.split(":")[0]),
-      Number(time.split(":")[1])
-    );
-
-    setItem({
-      ...item,
-      date
-    });
-  };
-
   return (
     <>
       <form onSubmit={handleSubmit} style={styles.form}>
@@ -122,7 +115,6 @@ const WeightTable = (): JSX.Element => {
           <input
             id="time"
             type="time"
-            ref={timeRef}
             value={formatToInputTime(new Date(item.date))}
             onChange={handleTimeChange}
           />
