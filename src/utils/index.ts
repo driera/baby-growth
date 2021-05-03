@@ -29,8 +29,11 @@ export const formatToInputDate = (date: Date): string => {
 
 export const formatToInputTime = (date: Date): string => {
   const d = new Date(date);
-  const hour = "" + d.getHours();
-  const minutes = "" + d.getMinutes();
+  let hour = "" + d.getHours();
+  let minutes = "" + d.getMinutes();
+
+  if (hour.length < 2) hour = "0" + hour;
+  if (minutes.length < 2) minutes = "0" + minutes;
 
   return [hour, minutes].join(":");
 };
