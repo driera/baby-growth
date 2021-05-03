@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import styles from "./index.styles";
 
-const PageHeader = (): JSX.Element => {
+const Header = (): JSX.Element => {
   return (
     <header style={styles.header}>
       <h1 style={styles.title}>Baby weight progression</h1>
@@ -9,4 +9,4 @@ const PageHeader = (): JSX.Element => {
   );
 };
 
-export default PageHeader;
+export default Header;

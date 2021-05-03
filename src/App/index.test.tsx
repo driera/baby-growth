@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import WeightTable from ".";
+import App from "./";
 
 describe("Page", () => {
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe("Page", () => {
   });
 
   it("Shows a new line after submitting weight form", () => {
-    render(<WeightTable />);
+    render(<App />);
 
     userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "3000");
@@ -28,7 +28,7 @@ describe("Page", () => {
   });
 
   it("removes decimals from input", () => {
-    render(<WeightTable />);
+    render(<App />);
 
     userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "1000.5");
@@ -38,7 +38,7 @@ describe("Page", () => {
   });
 
   it("does not add a new line when input is empty", () => {
-    render(<WeightTable />);
+    render(<App />);
 
     userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "");
@@ -48,7 +48,7 @@ describe("Page", () => {
   });
 
   it("shows a date in each new weight registry", () => {
-    render(<WeightTable />);
+    render(<App />);
 
     userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "4000");
@@ -58,7 +58,7 @@ describe("Page", () => {
   });
 
   it("avoids anything else than numbers in input", () => {
-    render(<WeightTable />);
+    render(<App />);
 
     userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "this is a text");
@@ -68,7 +68,7 @@ describe("Page", () => {
   });
 
   it("removes weight when clicking `X` button", () => {
-    render(<WeightTable />);
+    render(<App />);
 
     userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "3000");
@@ -82,7 +82,7 @@ describe("Page", () => {
   });
 
   it("adds `poop` and `feed` booleans in each line", () => {
-    render(<WeightTable />);
+    render(<App />);
 
     userEvent.click(screen.getByText(/weight \(in grams\)/i));
     userEvent.type(screen.getByRole("spinbutton"), "3000");
@@ -95,7 +95,7 @@ describe("Page", () => {
   });
 
   it("adds a specific date to new line", () => {
-    render(<WeightTable />);
+    render(<App />);
 
     userEvent.type(screen.getByLabelText("Date"), "2021-03-22");
     userEvent.type(screen.getByRole("spinbutton"), "2100");
@@ -105,7 +105,7 @@ describe("Page", () => {
   });
 
   it("adds a specific time to new line", () => {
-    render(<WeightTable />);
+    render(<App />);
 
     userEvent.type(screen.getByLabelText("Time"), "20:30");
     userEvent.type(screen.getByRole("spinbutton"), "2100");

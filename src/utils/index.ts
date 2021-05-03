@@ -1,5 +1,5 @@
 import { SetStateAction, useEffect, useRef, useState } from "react";
-import { itemType } from "../App/WeightTable";
+import { itemType } from "../App";
 
 export const formatDate = (
   date: Date,
