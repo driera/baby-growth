@@ -1,10 +1,12 @@
 :root {
     /* Colors */
     --main-color: hsl(195, 100%, 40%);
-    --dark-color: hsl(0, 0%, 7%);
+    --secondary-color: hsl(209, 83%, 45%);
+    --dark-color: hsl(195, 40%, 10%);
     --light-color: hsl(0, 0%, 100%);
-    --grey-color: hsl(195, 10%, 60%);
+    --grey-color: hsl(195, 10%, 95%);
 
     /* Typography */
     --primary-font: 'Raleway', sans-serif;
+    --secondary-font: 'Libre Baskerville', serif;
 }

@@ -8,8 +8,8 @@ const styles: { [key: string]: CSSProperties } = {
     alignItems: "center",
     gap: "20px",
     padding: "20px",
-    marginBottom: "20px",
-    border: "1px dashed var(--grey-color)"
+    background: "var(--grey-color)",
+    borderRadius: "40px"
   },
   weightLabel: {
     fontSize: "14px",
@@ -28,13 +28,16 @@ const styles: { [key: string]: CSSProperties } = {
     marginRight: "5px"
   },
   submit: {
+    minWidth: "180px",
     cursor: "pointer",
     border: "none",
-    padding: "8px 20px",
-    borderRadius: "5px",
+    padding: "15px 30px",
+    borderRadius: "30px",
+    color: "var(--light-color)",
     background: "var(--main-color)",
     fontWeight: 600,
-    fontSize: "14px"
+    fontSize: "14px",
+    textTransform: "uppercase"
   }
 };
 

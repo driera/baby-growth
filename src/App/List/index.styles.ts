@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 const styles: { [key: string]: CSSProperties } = {
   weightGrid: {
     display: "grid",
-    gap: "10px",
+    gap: "20px",
     padding: "0 20px"
   },
   weightLine: {
@@ -12,7 +12,8 @@ const styles: { [key: string]: CSSProperties } = {
     gridTemplateColumns: "auto minmax(120px, auto) minmax(60px, auto) auto",
     justifyContent: "flex-start",
     alignItems: "center",
-    gap: "10px"
+    gap: "10px",
+    fontSize: "20px"
   },
   weightValue: {
     display: "block",

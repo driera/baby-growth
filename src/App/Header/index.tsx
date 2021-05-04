@@ -4,7 +4,8 @@ import styles from "./index.styles";
 const Header = (): JSX.Element => {
   return (
     <header style={styles.header}>
-      <h1 style={styles.title}>Baby weight progression</h1>
+      <span style={styles.background}></span>
+      <h1 style={styles.title}>🥚 Baby progress 🐥</h1>
     </header>
   );
 };

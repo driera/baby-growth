@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:200,300,400,400i,600,800&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Raleway:ital,wght@0,200;0,400;0,600;1,400&display=block');
 
 input,
 button,
@@ -16,8 +16,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.2;
-    color: var(--light-color);
-    background: var(--dark-color);
+    color: var(--dark-color);
+    background: var(--light-color);
 }
 
 a {
