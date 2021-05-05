@@ -2,6 +2,7 @@ import React, { MouseEvent, SetStateAction } from "react";
 import { itemType } from "..";
 import { formatDate } from "../../utils";
 import styles from "./index.styles";
+import { ReactComponent as WeightIcon } from "../../assets/icons/weight.svg";
 
 type props = {
   listState: [itemType[], React.Dispatch<SetStateAction<itemType[]>>];
@@ -19,7 +20,7 @@ const List = ({ listState }: props): JSX.Element => {
   };
 
   return (
-    <ul style={styles.weightGrid}>
+    <ul style={styles.grid}>
       {list
         .sort((a, b) => {
           if (!a.date || !b.date) {
@@ -28,7 +29,7 @@ const List = ({ listState }: props): JSX.Element => {
           return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
         })
         .map((item, index) => (
-          <li key={index} style={styles.weightLine}>
+          <li key={index} style={styles.line}>
             <button
               type="button"
               onClick={(e) => removeItem(e, item)}
@@ -37,11 +38,39 @@ const List = ({ listState }: props): JSX.Element => {
             >
               ×
             </button>
-            <span>{item.date && formatDate(new Date(item.date), "es-ES")}</span>
-            <span style={styles.weightValue}>{item.value} g</span>
-            <span>
-              {item.poop && `💩`} {item.feed && `🍼`}
-            </span>
+            <div style={styles.icon}>
+              <WeightIcon role="img" style={styles.iconImage} />
+            </div>
+            <div style={styles.content}>
+              <div style={styles.contentLabel}>Date</div>
+              <div style={styles.contentData}>
+                {item.date && formatDate(new Date(item.date), "es-ES")}
+              </div>
+            </div>
+            <div style={styles.content}>
+              <div style={styles.contentLabel}>Weight</div>
+              <div style={styles.value}>
+                {item.value}
+                <span style={styles.unit}>g</span>
+              </div>
+            </div>
+            <div style={styles.content}>
+              {(item.poop || item.feed) && (
+                <div style={styles.contentLabel}>Details</div>
+              )}
+              <div style={styles.contentData}>
+                {item.poop && (
+                  <span role="img" aria-label="poop">
+                    💩
+                  </span>
+                )}{" "}
+                {item.feed && (
+                  <span role="img" aria-label="feed">
+                    🍼
+                  </span>
+                )}
+              </div>
+            </div>
           </li>
         ))}
     </ul>
