@@ -4,12 +4,14 @@ const styles: { [key: string]: CSSProperties } = {
   container: {
     display: "grid",
     justifyItems: "center",
-    padding: "30px 20px",
+    alignItems: "flex-start",
+    padding: "0 20px",
     overflow: "auto"
   },
   grid: {
     display: "grid",
-    gap: "20px"
+    gap: "20px",
+    padding: "30px 0"
   },
   line: {
     display: "grid",
