@@ -32,7 +32,13 @@ baby-weight.netlify.com
 
 [√] Modify `item.date` state from date and time inputs, avoid creating new dates
 
-[ ] Split WeightTable in multiple components (form and list)
+[√] Split WeightTable in multiple components (form and list)
+
+[√] Update favicon and page title
+
+[√] Add some styles
+
+[√] Allow overflow in long list
 
 [ ] Spike: Save dates in Date format (not number) is better for performance?
 
