@@ -2,6 +2,7 @@ import { CSSProperties } from "react";
 
 const styles: { [key: string]: CSSProperties } = {
   header: {
+    justifySelf: "center",
     padding: "20px 0",
     fontFamily: "var(--secondary-font)"
   },

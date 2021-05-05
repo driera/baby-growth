@@ -8,6 +8,7 @@ const styles: { [key: string]: CSSProperties } = {
     alignItems: "center",
     gap: "20px",
     padding: "20px",
+    margin: "0 30px",
     background: "var(--grey-color)",
     borderRadius: "40px"
   },

@@ -1,10 +1,15 @@
 import { CSSProperties } from "react";
 
 const styles: { [key: string]: CSSProperties } = {
+  container: {
+    display: "grid",
+    justifyItems: "center",
+    padding: "30px 20px",
+    overflow: "auto"
+  },
   grid: {
     display: "grid",
-    gap: "20px",
-    padding: "0 20px"
+    gap: "20px"
   },
   line: {
     display: "grid",
@@ -27,11 +32,12 @@ const styles: { [key: string]: CSSProperties } = {
   },
   icon: {
     alignSelf: "center",
-    width: "50px",
-    height: "50px",
-    padding: "9px 11px 13px",
+    width: "40px",
+    height: "40px",
+    padding: "6px 8px 10px",
     borderRadius: "25px",
-    background: "var(--grey-color)"
+    background: "var(--grey-color)",
+    opacity: "0.5"
   },
   content: {
     display: "grid"
