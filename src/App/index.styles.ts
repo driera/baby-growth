@@ -8,7 +8,7 @@ const styles: { [key: string]: CSSProperties } = {
     margin: "0 auto",
     display: "grid",
     alignContent: "start",
-    gridTemplateRows: "auto auto 1fr",
+    gridTemplateRows: "auto auto 1fr minmax(auto, 300px)",
     gap: "10px",
     overflow: "hidden"
   }
